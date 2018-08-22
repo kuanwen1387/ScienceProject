@@ -6,19 +6,18 @@ shinyUI(fluidPage(
     
     sidebarPanel(
       selectInput("select1", label = h3("Currency:"), 
-                  choices = c("EUR" = "EUR", "JPY" = "JPY",
-                                 "GBP" = "GBP"), selected = "EUR"),
+                  choices = c("JPY" = "JPY", "GBP" = "GBP"), selected = "JPY"),
       selectInput("select2", label = h3("Tweets:"), 
-                  choices = c("USD" = "WSJ", "EUR" = "handelsblatt", "JPY" = "nikkei",
-                              "GBP" = "FinancialTimes"), selected = "USD"),
+                  choices = c("business" = "business", "nikkei" = "nikkei", "BBCBusiness" = "BBCBusiness"), selected = "business"),
       submitButton("Submit")
     ),
     
     mainPanel(
       tabsetPanel(
-        tabPanel("Prediction", verbatimTextOutput("text")),
+        tabPanel("Prediction", verbatimTextOutput("prediction")),
         tabPanel("Tweets", tableOutput("tweets")),
-        tabPanel("Twitter Sentiment", plotOutput("sentiment")), 
+        tabPanel("USD Sentiment", plotOutput("sentiment1")),
+        tabPanel("Input Sentiment", plotOutput("sentiment2")),
         tabPanel("Currency History", plotOutput("history"))
       )
     )
